@@ -1,0 +1,21 @@
+This script attempts to brute force the last three characters of a given `csrf-xsrfToken` value by testing all possible combinations of upper and lowercase letters and digits.
+
+Usage:
+1. Install the required Python packages by running `pip install -r requirements.txt`.
+2. Run the script with `python3 brute_force_csrf_xsrf_token.py`.
+
+The script includes:
+- A progress bar to show completion status and estimated time remaining.
+- Notification when the brute force process is completed.
+- Logging of valid tokens in a file named `valid_tokens.txt`.
+
+Dependencies:
+- requests: For making HTTP requests to the target URL.
+- tqdm: For displaying the progress bar.
+
+How it works:
+1. The script constructs a list of all possible 3-character suffix combinations using uppercase and lowercase letters and digits.
+2. It queues these combinations and uses multiple threads to process them concurrently.
+3. Each thread attempts to send a POST request to the target URL with a `csrf-xsrfToken` value that includes the current suffix.
+4. If a request returns a status code of 200, the token is logged in `valid_tokens.txt`.
+5. The progress bar updates in real-time to show the number of combinations tested and the time remaining.
